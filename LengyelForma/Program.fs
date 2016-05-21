@@ -104,8 +104,36 @@ let applyOperator (operator, op1, op2) =
 
 // Postfix-kifejezés megoldása
 let solvePolishNotation inputTokens =
-    let mutable stack = new Stack<Token>()
 
+//// Funkcionálisabb megközelítés, sajnos nem sikerült működésre bírni
+
+//    let push st item = item :: st
+//    let pop = fun st -> List.head(st), List.tail(st)
+//
+//    let mutable stack = List.Empty
+//
+//    let procToken = fun st tok ->
+//        match tok with
+//        | Number x -> 
+//            tok::st
+//        | _ -> 
+//            let p1 = List.head(st)
+//            let st = List.tail(st)
+//            let p2 = List.head(st)
+//            let st = List.tail(st)
+//            let tok2 = (applyOperator (tok, p1, p2))
+//            tok2::st
+//
+//    // Itt valamiért nem kapja meg a token-t a procToken
+//    for token in inputTokens do
+//        let stack = procToken stack token
+//        ()
+//       
+//    match stack.Length with 
+//        | 1 -> stack.Head
+//        | _ -> failwith "Hibás megoldás stack"
+
+    let stack = new Stack<Token>()
     for token in inputTokens do
         match token with
         | Number x -> stack.Push (Number x)
